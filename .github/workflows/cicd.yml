@@ -15,7 +15,7 @@ jobs:
       POSTGRES_PORT: 5432
       POSTGRES_DB: cicd_test
       SECRET_KEY: django-insecure-c-1%_g181t6@a=ww4nyu55!3_t#b&efh2p7)^d)raewqow!68%
-      ALLOWED_HOSTS: *
+      ALLOWED_HOSTS: localhost,127.0.0.1
     services:
       postgres_main:
         image: postgres:12
