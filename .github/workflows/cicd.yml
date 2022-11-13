@@ -12,7 +12,6 @@ jobs:
       POSTGRES_USER: adilet
       POSTGRES_PASS: some_password
       POSTGRES_HOST: localhost
-      POSTGRES_PORT: 5432
       POSTGRES_DB: cicd_test
       SECRET_KEY: django-insecure-c-1%_g181t6@a=ww4nyu55!3_t#b&efh2p7)^d)raewqow!68%
       ALLOWED_HOSTS: localhost,127.0.0.1
@@ -37,7 +36,7 @@ jobs:
       - name: Установка python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.9
 
       - name: Установка библиотек
         run: pip install -r requirements.txt
@@ -45,15 +44,13 @@ jobs:
       - name: Линтинг кода
         run: flake8 main
 
-#       - name: Тестинг
-#         run: python manage.py test
-#         env:
-#           SECRET_KEY: ${{ env.SECRET_KEY }}
-#           DEBUG: "0"
-#           ALLOWED_HOSTS: ${{ env.ALLOWED_HOSTS }}
-#           DB_ENGINE: django.db.backends.postgresql
-#           DB_NAME: ${{ env.POSTGRES_DB }}
-#           DB_USER: ${{ env.POSTGRES_USER }}
-#           DB_PASSWORD: ${{ env.POSTGRES_PASS }}
-#           DB_HOST: ${{ env.POSTGRES_HOST }}
-#           DB_PORT: ${{ env.POSTGRES_PORT }}
+      - name: Тестинг
+        run: python manage.py test
+        env:
+         SECRET_KEY: ${{ env.SECRET_KEY }}
+         DEBUG: "1"
+         ALLOWED_HOSTS: ${{ env.ALLOWED_HOSTS }}
+         DB_NAME: ${{ env.POSTGRES_DB }}
+         DB_USER: ${{ env.POSTGRES_USER }}
+         DB_PASSWORD: ${{ env.POSTGRES_PASS }}
+         DB_HOST: ${{ env.POSTGRES_HOST }}
