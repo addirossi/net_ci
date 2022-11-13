@@ -49,7 +49,7 @@ jobs:
         run: python manage.py test
         env:
          SECRET_KEY: ${{ env.SECRET_KEY }}
-         DEBUG: "0"
+         DEBUG: "1"
          ALLOWED_HOSTS: ${{ env.ALLOWED_HOSTS }}
          DB_ENGINE: django.db.backends.postgresql
          DB_NAME: ${{ env.POSTGRES_DB }}
